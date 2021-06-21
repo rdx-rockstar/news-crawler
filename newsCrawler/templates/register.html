@@ -1,5 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
+{% load socialaccount %}
+{% load static %}
 <html lang="en">
 <!--{% static '' %}-->
 <head>
@@ -94,7 +95,7 @@
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
-							Or Sign Up Using
+							Or Login Using
 						</span>
 					</div>
 
@@ -107,7 +108,7 @@
 <!--							<i class="fa fa-twitter"></i>-->
 <!--						</a>-->
 
-						<a href="#" class="login100-social-item bg3">
+						<a href="{% provider_login_url 'google' %}" class="login100-social-item bg3">
 							<i class="fa fa-google"></i>
 						</a>
 					</div>
