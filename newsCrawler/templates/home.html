@@ -1,18 +1,362 @@
+{% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<title>News Crawler</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="News Crawler Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="{% static 'css2/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css2/zoomslider.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css2/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css2/component.css' %}" />
+	<script type="text/javascript" src="{% static 'js2/modernizr-2.6.2.min.js' %}"></script>
+	<!--/web-fonts-->
+	<link href='{% static '//fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' %} rel='stylesheet' type='text/css'>
+	<link href='{% static '//fonts.googleapis.com/css?family=Wallpoet' %} rel='stylesheet' type='text/css'>
+	<link href='{% static '//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' %} rel='stylesheet' type='text/css'>
+	<!--//web-fonts-->
 </head>
+
 <body>
-    <h1>hello world!!!!!</h1>
-    {% if user.is_authenticated %}
-    <a href="/logout">logout</a>
-    {%else%}
-    <a href="/login">login</a>
-    <a href="/register">register</a>
-    {%endif%}
+	<!--/banner-section-->
+	<div id="demo-1" data-zs-src='["{% static 'images2/2.jpeg' %}", "{% static 'images2/1.jpeg' %}", "{% static 'images2/3.jpeg' %}", "{% static 'images2/4.jpeg' %}"]'
+		data-zs-overlay="dots">
+		<div class="demo-inner-content">
+			<div class="header-top">
+				<!-- /header-left -->
+				<div class="header-left">
+
+					<br><div class="tag"><a href = "register">  Register</a></div>
+				</div>
+				<!-- //header-left -->
+				<div class="search-box">
+					<div id="sb-search" class="sb-search">
+
+					</div>
+					<ul>
+					<li><button id="showRight" class="navig" style="color:white"><a href="login">Login </a></button>
+
+<!--
+							<!--Navigation from Right To Left-->
+						</li>
+					</ul>
+
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="banner-info">
+				<h1><a href="home">News <span class="logo-sub">Crawler</span> </a></h1>
+				<form action="#" method="post">
+					<div class="search-two">
+						<select id="country" onchange="change_country(this.value)" class="frm-field required">
+						 <option value="null">Hindustan Times</option>
+							<option value="abt">xyz</option>
+							<option value="ac">abc</option>
+					</div>
+
+					<div class="section_room">
+						<label>From:</label>
+						<input type="date" id="country" onchange="change_country(this.value)"
+							class="frm-field required">
+						</input>
+						<br>
+					</div>
+					<div class="section_room">
+						<label>To:</label>
+						<input type="date" id="country" onchange="change_country(this.value)"
+							class="frm-field required">
+						</input>
+					</div>
+					<br><br><br>
+
+					<input type="submit" value="Submit">
+					<div class="clearfix"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--//featured_section-->
+	<div class="featured_section_w3l">
+		<div class="container">
+			<h3 class="tittle">NEWS CATEGORIES</h3>
+			<div class="inner_tabs">
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					<ul id="myTab" class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#" id="expeditions-tab" role="tab"
+								data-toggle="tab" aria-controls="expeditions" aria-expanded="true"> UNCLASSIFIED</a>
+						</li>
+						<li role="presentation"><a href="#" role="tab" id="tours-tab" data-toggle="tab"
+								aria-controls="tours">DEFENCE</a></li>
+						<li role="presentation"><a href="#tree" role="tab" id="tree-tab" data-toggle="tab"
+								aria-controls="tree">NON-DEFENCE</a></li>
+
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="expeditions"
+							aria-labelledby="expeditions-tab">
+							<div class="section__content clearfix">
+								<!-- /card1 -->
+								<div class="card effect__hover">
+									<div class="card__front">
+										<span class="card__text">
+											<div class="img-grid">
+												<img src="{% static 'images2/f1.jpg' %}">
+												
+
+											</div>
+										</span>
+									</div>
+									<div class="card__back">
+										<span class="card__text">
+											<div class="login-inner2">
+												<h4>TITLE</h4>
+												<div class="login-top sign-top">
+													<form>
+														<input type="text" name="name" class="name active"
+															placeholder="Title" required="" />
+														<input type="text" name="email" class="email"
+															placeholder="Email" required="" />
+														<input type="text" name="phone" class="phone"
+															placeholder="Phone" required="" />
+														<div class="section_drop">
+															<select id="country1" onchange="change_country(this.value)"
+																class="frm-field required">
+																<option value="null"> Subheading</option>
+																<!-- <option value="city">Amsterdam</option>
+																<option value="city">Bahrain</option>
+																<option value="city">Cannes</option>
+																<option value="city">Dublin</option>
+																<option value="city">Edinburgh</option>
+																<option value="city">Florence</option>
+																<option value="city">Georgia</option>
+																<option value="city">Hungary</option>
+																<option value="city">Hong Kong</option>
+																<option value="city">Johannesburg</option>
+																<option value="city">Kiev</option>
+																<option value="city">London</option>
+																<option value="city">Others...</option> -->
+															</select>
+														</div>
+														<input type="submit" value="Done">
+
+												</div>
+												</form>
+
+											</div>
+										</span>
+									</div>
+								</div>
+								<!-- //card1 -->
+								<!-- /card2 -->
+								
+						       <!-- //card2 -->
+								<!-- /card3 -->
+				
+								<!-- //card3 -->
+						
+								<!-- /card1 -->
+								
+								<!-- //card1 -->
+								<!-- /card2 -->
+								<div class="card effect__hover">
+									<div class="card__front">
+										<span class="card__text">
+											<div class="img-grid">
+												<img src="{% static 'images2/f5.jpeg' %}">
+											
+											</div>
+										</span>
+									</div>
+									<div class="card__back">
+										<span class="card__text">
+											<div class="login-inner2">
+												<h4><img src="images/rupee.png" alt="Catchy Carz"> Check On-Road Price
+												</h4>
+												<div class="login-top sign-top">
+													<form action="#" method="post">
+														<input type="text" name="name" class="name active"
+															placeholder="Name" required="" />
+														<input type="text" name="email" class="email"
+															placeholder="Email" required="" />
+														<div class="section_drop">
+															<select id="country1" onchange="change_country(this.value)"
+																class="frm-field required">
+																<option value="null"> Select City</option>
+																<option value="null"> Select City</option>
+																<option value="city">Amsterdam</option>
+																<option value="city">Bahrain</option>
+																<option value="city">Cannes</option>
+																<option value="city">Dublin</option>
+																<option value="city">Edinburgh</option>
+																<option value="city">Florence</option>
+																<option value="city">Georgia</option>
+																<option value="city">Hungary</option>
+																<option value="city">Hong Kong</option>
+																<option value="city">Johannesburg</option>
+																<option value="city">Kiev</option>
+																<option value="city">London</option>
+																<option value="city">Others...</option>
+															</select>
+														</div>
+														<input type="password" name="password" class="password"
+															placeholder="Password" required="" />
+														<input type="submit" value="Check Now">
+
+
+													</form>
+												</div>
+											</div>
+										</span>
+									</div>
+								</div>
+								<!-- //card2 -->
+								<!-- /card3 -->
+											
+										
+								<!-- //card3 -->
+					
+								<!-- /card1 -->
+								
+								
+								<!-- //card1 -->
+								<!-- /card2 -->
+												
+								
+								<!-- //card2 -->
+								<!-- /card3 -->
+								<div class="card effect__hover">
+									<div class="card__front">
+										<span class="card__text">
+											<div class="img-grid">
+												<img src="{% static 'images2/f9.jpg' %}">
+												
+
+											</div>
+										</span>
+									</div>
+									<div class="card__back">
+										<span class="card__text">
+											<div class="login-inner2">
+												<h4><img src="images/rupee.png" alt="Catchy Carz"> Check On-Road Price
+												</h4>
+												<div class="login-top sign-top">
+													<form action="#" method="post">
+														<input type="text" name="name" class="name active"
+															placeholder="Name" required="" />
+														<input type="text" name="email" class="email"
+															placeholder="Email" required="" />
+														<div class="section_drop">
+															<select id="country1" onchange="change_country(this.value)"
+																class="frm-field required">
+																<option value="null"> Select City</option>
+																<option value="city">Amsterdam</option>
+																<option value="city">Bahrain</option>
+																<option value="city">Cannes</option>
+																<option value="city">Dublin</option>
+																<option value="city">Edinburgh</option>
+																<option value="city">Florence</option>
+																<option value="city">Georgia</option>
+																<option value="city">Hungary</option>
+																<option value="city">Hong Kong</option>
+																<option value="city">Johannesburg</option>
+																<option value="city">Kiev</option>
+																<option value="city">London</option>
+																<option value="city">Others...</option>
+															</select>
+														</div>
+														<input type="password" name="password" class="password"
+															placeholder="Password" required="" />
+														<input type="submit" value="Check Now">
+
+
+													</form>
+												</div>
+											</div>
+										</span>
+									</div>
+								</div>
+								<!-- //card3 -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--//featured_section-->
+
+			
+	<script src="{% static 'js2/jquery-1.11.1.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js2/jquery.zoomslider.min.js' %}"></script>
+	<script type="text/javascript">
+		$(window).load(function () {
+			$("#flexiselDemo").flexisel({
+				visibleItems: 1,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 1000,
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: {
+					portrait: {
+						changePoint: 480,
+						visibleItems: 1
+					},
+					landscape: {
+						changePoint: 640,
+						visibleItems: 1
+					},
+					tablet: {
+						changePoint: 768,
+						visibleItems: 1
+					}
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(window).load(function () {
+			$("#flexiselDemo1").flexisel({
+				visibleItems: 4,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: {
+					portrait: {
+						changePoint: 480,
+						visibleItems: 1
+					},
+					landscape: {
+						changePoint: 640,
+						visibleItems: 2
+					},
+					tablet: {
+						changePoint: 768,
+						visibleItems: 3
+					}
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript" src="{% static 'js2/jquery.flexisel.js' %}"></script>
+	<script src="{% static 'js2/bootstrap.js' %}"></script>
+
+
 </body>
-</html> 
+
+</html>
