@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
 
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     'newsCrawler',
 ]
 
