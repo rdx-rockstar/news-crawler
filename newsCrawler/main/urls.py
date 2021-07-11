@@ -9,4 +9,7 @@ urlpatterns = [
     path('ajax/crawl', views.fetchArticles,name='crawl'),
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),
+    path('defence', views.defence, name='defence'),
+    path('nondefence', views.nondefence, name='nondefence'),
+    path('unclassified', views.unclassified, name='unclassified'),
 ]

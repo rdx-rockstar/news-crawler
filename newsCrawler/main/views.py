@@ -102,3 +102,13 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+def defence(request):
+    return render(request, 'defence.html')
+
+
+def nondefence(request):
+    return render(request, 'nondefence.html')
+
+
+def unclassified(request):
+    return render(request, 'unclassified.html')

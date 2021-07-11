@@ -4,6 +4,110 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+.btn1,.btn2,.btn3{
+    background-color: #ffd199;
+    box-shadow: inset 0 0 0 0 white;
+    transition: ease-out 0.3s;
+    outline: none;
+}
+.btn3:hover{
+    box-shadow: inset 103px 0 0 0 #ffa333;
+    cursor: pointer;
+
+}
+.btn1:hover{
+    box-shadow: inset 100px 0 0 0 #ffa333;
+    cursor: pointer;
+
+}
+.btn2:hover{
+    box-shadow: inset 142px 0 0 0 #ffa333;
+    cursor: pointer;
+
+}
+.btn2{
+    padding: 17px 17px;
+}
+.btn3{
+    padding: 17px 35px;
+    border-bottom-right-radius: 10px;
+}
+.btn1{
+    border-bottom-left-radius: 10px;
+    padding: 17px 11px;
+}
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 15px rgba(0,0,0);
+}
+.card-stats .type{
+font-size: 11px;
+font-weight: 300;
+text-transform: uppercase;
+}
+
+.card-stats .value{
+    font-size: 22px;
+    font-weight: 500;
+
+}
+
+
+.card-stats .stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color:white;
+    padding:3px;
+  }
+.card-stats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: white;
+  }
+.card-text {
+    grid-area: text;
+    margin: 25px;
+  }
+
+  .card-text p {
+    color: grey;
+    font-size:15px;
+    font-weight: 300;
+  }
+  .card-text h2 {
+    margin-top:0px;
+    font-size:28px;
+  }
+
+
+  .card-text {
+    grid-area: text;
+  }
+  .card-stats {
+    grid-area: stats;
+  }
+.card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 70px;
+    grid-template-areas: "text" "stats";
+
+    border-radius: 28px;
+    background: white;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    font-family: roboto;
+    text-align: center;
+    transition: 0.5s ease;
+
+  }
 p{
 	margin:0;
 	font-size:14px;
@@ -191,7 +295,7 @@ ul.social-icons li {
 #sidebar {
   background: #222;
     width: 200px;
-    height: 600px;
+    height: 240px;
     display: block;
     position: absolute;
     left: -200px;
@@ -205,7 +309,7 @@ h4.menu {
     color: #fff;
     text-transform:uppercase;
     font-weight:bold;
-    background:#EFC509;
+    background:#ff0000;
 }
 #sidebar.visible {
   left: 0;
@@ -226,7 +330,7 @@ h4.menu {
 
 #sidebar-btn span {
   height:3px;
-  background:#EFC509;
+  background:#E60D41;
   margin-bottom: 5px;
   display: block;
 }
@@ -944,12 +1048,9 @@ border:none!important;
 .card {
     position: relative;
     float: left;
-    margin-bottom: 20px;
-    padding-bottom: 18%;
-    width:31%;
+    width:32%;
     text-align:center;
     margin-right:2%;
-    height: 150px !important;
 }
 .login-inner2 {
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
@@ -958,24 +1059,23 @@ border:none!important;
     -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     border: 1px solid #E7E7E8;
 }
-/* .card:nth-child(3) {
+ .card:nth-child(3) {
   margin-right:0;
-} */
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem; 
-    text-align: left;
-    height: 300px;
-    overflow: scroll;
 }
-.card-heading {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem; 
-    text-align: left;
-    height: 60px;
-    overflow: hidden;
+.card__front,
+.card__back {
+  position: absolute;
+    top:0px;
+    left: 0;
+    width: 100%;
+    height: 312px;
+}
+.card__front,
+.card__back {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
 }
 /* card fronts and backs */
 .card__front {
@@ -988,6 +1088,13 @@ border:none!important;
 
 .card__front {
   background-color: #fff;
+}
+
+.card__back {
+  background-color: #fff;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+
 }
 
 /* card text */
@@ -1164,7 +1271,7 @@ border:none!important;
     outline: none;
     border: none;
     width: 20%;
-	background: #EFC509;
+	background: #e51c23;
     color: #fff;	
     font-size: 18px;
     padding: 12px 0px;

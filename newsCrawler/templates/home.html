@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 	<!--/banner-section-->
-	<div id="demo-1" data-zs-src='["{% static 'images2/2.jpeg' %}", "{% static 'images2/1.jpeg' %}", "{% static 'images2/3.jpeg' %}", "{% static 'images2/4.jpeg' %}"]'
+	<div id="demo-1" data-zs-src='["{% static 'images2/1.jpeg' %}", "{% static 'images2/22.jpeg' %}", "{% static 'images2/55.jpeg' %}", "{% static 'images2/44.jpeg' %}"]'
 		data-zs-overlay="dots">
 		<div class="demo-inner-content">
 			<div class="header-top">
@@ -182,43 +182,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<button id="reload">RELOAD</button>
-	<a href="clear"><button>CLEAR</button></a>
+	
 	<!--//featured_section-->
-	<div class="loader center" id="loader"><br><br><br></div>
-	<div id="articles">
-	<div class="featured_section_w3l">
-		<div class="container">
-			<h3 class="tittle">NEWS CATEGORIES</h3>
-			<div class="inner_tabs">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#" id="expeditions-tab" role="tab"
-								data-toggle="tab" aria-controls="expeditions" aria-expanded="true"> UNCLASSIFIED</a>
-						</li>
-						<li role="presentation"><a href="#" role="tab" id="tours-tab" data-toggle="tab"
-								aria-controls="tours">DEFENCE</a></li>
-						<li role="presentation"><a href="#tree" role="tab" id="tree-tab" data-toggle="tab"
-								aria-controls="tree">NON-DEFENCE</a></li>
-
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="expeditions"
-							aria-labelledby="expeditions-tab">
-							<div class="section__content clearfix">
-								<!-- /card1 -->
-								{% for article in articles %}
-									<div class="card">
-										<div class="card__front">
-											<div class="card-body hide-scrollbar">
-												<h3><a href="{{article.url}}" class="blog-desc">{{article.heading}}</a></h3><br>
-												<p>
-													{{article.description}}
-												</p>
-											</div>
-										</div>
-									</div>
-								{% endfor %}
+			
 
 								<!-- <div class="card ">
 									<div class="card__front">
@@ -310,6 +276,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<script type="text/javascript" src="{% static 'js2/jquery.flexisel.js' %}"></script>
 	<script src="{% static 'js2/bootstrap.js' %}"></script>
+
+	<!--sidebar-->
+	<div id="sidebar"> 
+		<h4 class="menu">Menu</h4>
+			 <ul>
+		   
+				 
+		
+
+			 <ul>
+			 <li><a href="defence">Defence News</a></li>
+				<li><a href="nondefence">Non-Defence News</a></li>
+				<li><a href="unclassified"><span> Unclassified News</span></a></li>
+				<li class="last"><a href="#"><span>ML</span></a></li>
+				
+			   
+			 </ul>
+		  </li>
+		  
+			 
+		
+	  <div id="sidebar-btn">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+	  </div>
+  </div>
+  <!-- <h4 class="menu">Menu</h4> -->
+
+	
+	
+<div id="sidebar-btn">
+	<span></span>
+	<span></span>
+	<span></span>
+</div>
+<script>
+	var sidebarbtn = document.getElementById('sidebar-btn');
+	  var sidebar = document.getElementById('sidebar');
+	 sidebarbtn.addEventListener('click', function () {
+	if(sidebar.classList.contains('visible')){
+		  sidebar.classList.remove('visible'); 
+	 }else {
+		  sidebar.className = 'visible';
+	  }
+	});
+  </script>
 
 
 </body>
