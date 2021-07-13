@@ -4,7 +4,9 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('clear', views.clear,name='clear'),
-    path('ajax/load', views.loadArticles,name='reload'),
+    path('clearDefence', views.clearDefence,name='clear'),
+    path('clearNonDefence', views.clearNonDefence,name='clear'),
+    path('clearML', views.clearML,name='clear'),
     path('ajax/status', views.status,name='crawl'),
     path('ajax/crawl', views.fetchArticles,name='crawl'),
     path('register', views.register, name='register'),
@@ -12,4 +14,5 @@ urlpatterns = [
     path('defence', views.defence, name='defence'),
     path('nondefence', views.nondefence, name='nondefence'),
     path('unclassified', views.unclassified, name='unclassified'),
+    path('ml', views.ml, name='unclassified'),
 ]

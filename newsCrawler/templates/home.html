@@ -30,6 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			width: 40px;
 			height: 40px;
 			animation: spin 2s linear infinite;
+			margin-top: 320px;
 		  }
 		  @keyframes spin {
 			0% { transform: rotate(0deg); }
@@ -46,21 +47,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var loader,articles
     window.onload = function(){
         loader=document.getElementById('loader')
-        articles=document.getElementById('articles')
+        articles=document.getElementById('demo-1')
         ajax=document.getElementById('crawl')
-        reload=document.getElementById('reload')
         loader.style.display='none'
         var loaded=0,myTimer,task_id,unique_id
         ajax.onclick=function(){
             console.log("fetching")
 			articles.style.display='none'
             loader.style.display='block'
-            //url=document.getElementById("url").value
+            url=document.getElementById("url").value
             loaded=0
             $.ajax({
                 url: '/ajax/crawl',
                 data: {
-                  'url': "https://www.hindustantimes.com/"
+                  'url':url
                 },
                 dataType:'json',
                 success: function (data) {
@@ -73,25 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         }
         function loadArticles(){
-            window.location.href = "http://localhost:8000/";
-            console.log("reloading")
-            articles.innerHTML=''
-            $.ajax({
-                url: '/ajax/load',
-                data: {
-                    'temp':'temp'
-                },
-                dataType: 'json',
-                success: function (data) {
-                    articles.innerHTML+= typeof(Object.entries(data.articles))+" 3"
-                    //for( let i=0;i<data.articles.length;i++)
-                    //{
-                    //    articles.innerHTML+='<div>'+data.articles[i]+'</div>'
-                    //}
-                    articles.style.display='block'
-                    loader.style.display='none'
-                }
-              });
+            window.location.href = "http://localhost:8000/unclassified";
         }
         function status(){
             if(loaded==1){
@@ -117,34 +99,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
               });
         }
-        reload.onclick=function(){
-            loadArticles()
-        }
     }
 </script>
 </head>
-
 <body>
 	<!--/banner-section-->
 	<div id="demo-1" data-zs-src='["{% static 'images2/1.jpeg' %}", "{% static 'images2/22.jpeg' %}", "{% static 'images2/55.jpeg' %}", "{% static 'images2/44.jpeg' %}"]'
-		data-zs-overlay="dots">
+		data-zs-overlay="dots" >
 		<div class="demo-inner-content">
 			<div class="header-top">
-				<!-- /header-left -->
-				<div class="header-left">
-
-					<br><div class="tag"><a href = "register">  Register</a></div>
-				</div>
-				<!-- //header-left -->
 				<div class="search-box">
-					<div id="sb-search" class="sb-search">
-
-					</div>
+					<div id="sb-search" class="sb-search"></div>
 					<ul>
-					<li><button id="showRight" class="navig" style="color:white"><a href="login">Login </a></button>
-
-<!--
-							<!--Navigation from Right To Left-->
+					{% if user.is_authenticated %} 
+						<li><button id="showRight" class="navig" style="color:white"><a href="logout">Logout </a></button>	
+					{%else%} 
+						<li><button id="showRight" class="navig" style="color:white"><a href="login">Login </a></button>
+						<li><button id="showRight" class="navig" style="color:white"><a href="register">Register </a></button>
+					{%endif%}
+<!--Navigation from Right To Left-->
 						</li>
 					</ul>
 
@@ -157,10 +130,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="">News <span class="logo-sub">Crawler</span> </a></h1>
 				<form action="">
 					<div class="search-two">
-						<select id="country" onchange="change_country(this.value)" class="frm-field required">
-						<option value="null">Hindustan Times</option>
-						<option value="abt">xyz</option>
-						<option value="ac">abc</option>
+						<select id="url" class="frm-field required">
+						<option value="https://www.hindustantimes.com/" selected="selected">Hindustan Times</option>
+						<option value="https://www.thehindu.com/">Times of India</option>
 						</select>
 					</div>
 					<br><br>
@@ -175,17 +147,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</input>
 					</div>
 					<br><br><br>
-					
 					<div class="clearfix"></div>
 				</form>
 				<button id="crawl">CRAWL</button>
 			</div>
 		</div>
 	</div>
-	
+	<div class="loader center" id="loader"></div>
 	<!--//featured_section-->
-			
-
 								<!-- <div class="card ">
 									<div class="card__front">
 										<span class="card__text">
@@ -280,18 +249,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--sidebar-->
 	<div id="sidebar"> 
 		<h4 class="menu">Menu</h4>
+			 <ul>				 
 			 <ul>
-		   
-				 
-		
-
-			 <ul>
+				<li><a href="unclassified"><span> Unclassified News</span></a></li>
 			 <li><a href="defence">Defence News</a></li>
 				<li><a href="nondefence">Non-Defence News</a></li>
-				<li><a href="unclassified"><span> Unclassified News</span></a></li>
-				<li class="last"><a href="#"><span>ML</span></a></li>
-				
-			   
+				<li><a href="ml"><span> ML</span></a></li>
 			 </ul>
 		  </li>
 		  
@@ -304,14 +267,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  </div>
   </div>
   <!-- <h4 class="menu">Menu</h4> -->
-
-	
-	
-<div id="sidebar-btn">
-	<span></span>
-	<span></span>
-	<span></span>
-</div>
 <script>
 	var sidebarbtn = document.getElementById('sidebar-btn');
 	  var sidebar = document.getElementById('sidebar');
@@ -323,8 +278,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  }
 	});
   </script>
-
-
 </body>
 
 </html>

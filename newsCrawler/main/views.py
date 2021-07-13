@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User,auth 
-from .models import article
+from .models import article,defenceArticle,nonDefenceArticle,mlArticle
 from uuid import uuid4
 from urllib.parse import urlparse
 from django.core.validators import URLValidator
@@ -14,12 +14,24 @@ from django.views.decorators.csrf import csrf_exempt
 from scrapyd_api import ScrapydAPI
 
 def home(request):
-    articles=article.objects.all()
-    return render(request,'home.html',{'user':request.user,'articles':articles})
+    return render(request,'home.html',{'user':request.user})
 
 def clear(request):
     article.objects.all().delete()
-    return redirect('/')
+    return redirect("/unclassified")
+
+def clearDefence(request):
+    defenceArticle.objects.all().delete()
+    return redirect("/defence")
+
+def clearNonDefence(request):
+    nonDefenceArticle.objects.all().delete()
+    return redirect("/nondefence")
+
+def clearML(request):
+    mlArticle.objects.all().delete()
+    return redirect("/ml")
+
 
 scrapyd = ScrapydAPI('http://localhost:6800')
 @csrf_exempt
@@ -30,9 +42,13 @@ def fetchArticles(request):
     unique_id = str(uuid4())
     settings = {
         'unique_id': unique_id,  # unique ID for each record for DB
-        'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36',
+        # 'USER_AGENT': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
     }
-    task = scrapyd.schedule('default', 'icrawler',settings=settings, url=url, domain=domain)
+    if(url.find("hindustan")!=-1):
+        task = scrapyd.schedule('default','icrawler',settings=settings, url=url, domain=domain)
+    else:
+        task = scrapyd.schedule('default', 'icrawler2',settings=settings, url=url, domain=domain)
     return JsonResponse({'task_id':task, 'unique_id': unique_id})
 
 def status(request):
@@ -43,13 +59,6 @@ def status(request):
         return JsonResponse({'error': 'Missing args'})
     status = scrapyd.job_status('default', task_id)
     return JsonResponse({'status': status})
-
-def loadArticles(request):
-    db=article.objects.all()
-    articles=[]
-    for i in db:
-        articles.append(i.title)
-    return JsonResponse({'articles': articles})
 
 #############################
 #############################
@@ -103,12 +112,18 @@ def logout(request):
     return redirect('/')
 
 def defence(request):
-    return render(request, 'defence.html')
-
+    articles=defenceArticle.objects.all()
+    return render(request, 'defence.html',{'articles':articles})
 
 def nondefence(request):
-    return render(request, 'nondefence.html')
+    articles=nonDefenceArticle.objects.all()
+    return render(request, 'nondefence.html',{'articles':articles})
+
+def ml(request):
+    articles=mlArticle.objects.all()
+    return render(request, 'ml.html',{'articles':articles})
 
 
 def unclassified(request):
-    return render(request, 'unclassified.html')
+    articles=article.objects.all()
+    return render(request, 'unclassified.html',{'articles':articles})

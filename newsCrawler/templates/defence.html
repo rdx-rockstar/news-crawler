@@ -27,109 +27,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--//web-fonts-->
 </head>
 <style>
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+</style>
+<style>
 	body {
-	  background-image: url('{% static 'images2/defence.jpeg' %}');
+	  background-image: url('{% static 'images2/classified.jpeg' %}');
 	  background-repeat: no-repeat;
 	  background-attachment: fixed;
 	  background-size: cover;
 	}
+	.del{
+		float: right;
+		transition: transform .2s;
+		margin-top: 10px;
+		margin-right: 10px;
+	}
+	.del:hover {
+		transform: scale(1.5);
+	  }
 	</style>
-
-
-
 	<!--//featured_section-->
 	<div class="featured_section_w3l">
 		<div class="container">
-			<h3 class="tittle"><font face = "Futura">DEFENCE</font></h3>
+			<a href="/clearDefence"><div class="del">
+				Delete All
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+					<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+					<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+				</svg>
+			</div>
+			</a>
+			<h3 class="tittle"><font face = "Futura">Defence</font></h3>
 			<div class="inner_tabs">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					
-					
-								
-								<!-- card1 -->
-								<div class="card">
-									
-
-									<div class="card-text">
-									  
-									  <h2>Card 1</h2>
-									  <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor </p>
-									</div>
-									<div class="card-stats">
-									  <div class="stat">
-										<div class="value"><button class = "btn5">Non Defence</button></div>
-										
-									  </div>
-									  <div class="stat border">
-										<div class="value"><button class = "btn2">Unclassified</button></div>
-										
-									  </div>
-									  <div class="stat">
-										<div class="value"><button class="btn3">ML</button></div>
-										
-									  </div>
-									</div>
-								  </div>
-								<!-- /card1 -->
-						
-							
-								<!-- card2 -->
-								<div class="card">
-									
-									<div class="card-text">
-									  
-									  <h2>Card 2</h2>
-									  <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
-									</div>
-									<div class="card-stats">
-									  <div class="stat">
-										<div class="value"><button class = "btn5">Non Defence</button></div>
-										
-									  </div>
-									  <div class="stat border">
-										<div class="value"><button class = "btn2">Unclassified</button></div>
-										
-									  </div>
-									  <div class="stat">
-										<div class="value"><button class="btn3">ML</button></div>
-										
-									  </div>
-									</div>
-								  </div>
-								<!-- /card2 -->
-								
-								<!-- card3 -->
-								<div class="card">
-									
-
-									<div class="card-text">
-									  
-									  <h2>Card 3</h2>
-									  <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
-									</div>
-									<div class="card-stats">
-									  <div class="stat">
-										<div class="value"><button class = "btn5">Non Defence</button></div>
-										
-									  </div>
-									  <div class="stat border">
-										<div class="value"><button class="btn2">Unclassified</button></div>
-										
-									  </div>
-									  <div class="stat">
-										<div class="value"><button class = "btn3">ML</button></div>
-										
-									  </div>
-									</div>
-								  </div>
-								<!-- /card3 -->
-							</div>
-                          </div>
+					{% for article in articles %}
+					  <div class="card hide-scrollbar">
+						<div class="card-text hide-scrollbar">
+							<div class="del">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+									<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+									<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+								</svg>
+								</div>
+							<h2><a href="{{article.url}}">{{article.heading}}</a></h2><br>
+							<p>
+								{{article.description}}	  
+							</p>
 						</div>
-					</div>
-				
+						<div class="card-stats">
+						  <div class="stat">
+							<div class="value"><button class = "btn1">Unclassified</button></div>
+						  </div>
+						  <div class="stat border">
+							<div class="value"><button class = "btn4">Non Defence</button></div>
+						  </div>
+						  <div class="stat">
+							<div class="value"><button class="btn3">ML</button></div>
+						  </div>
+						</div>
+					  </div>
+					{%endfor%}
+				</div>
 			</div>
-
 		</div>
 	</div>
 	<!--//featured_section-->
@@ -192,7 +154,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="{% static 'js2/jquery.flexisel.js' %}"></script>
 	<script src="{% static 'js2/bootstrap.js' %}"></script>
 
-
+	<div id="sidebar"> 
+		<h4 class="menu">Menu</h4>
+			 <ul>				 
+			 <ul>
+			 	<li><a href="/">Home</a></li>
+				 <li><a href="unclassified"><span> Unclassified News</span></a></li>
+				<li><a href="nondefence">Non-Defence News</a></li>
+				<li><a href="ml"><span> ML</span></a></li>
+			 </ul>
+		  </li>
+		  
+			 
+		
+	  <div id="sidebar-btn">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+	  </div>
+  </div>
+  <!-- <h4 class="menu">Menu</h4> -->
+<script>
+	var sidebarbtn = document.getElementById('sidebar-btn');
+	  var sidebar = document.getElementById('sidebar');
+	 sidebarbtn.addEventListener('click', function () {
+	if(sidebar.classList.contains('visible')){
+		  sidebar.classList.remove('visible'); 
+	 }else {
+		  sidebar.className = 'visible';
+	  }
+	});
+  </script>
 </body>
 
 </html>
