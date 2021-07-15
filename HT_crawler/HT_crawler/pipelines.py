@@ -4,12 +4,15 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from main.models import article
+from main.models import article,defenceArticle,nonDefenceArticle,mlArticle
 
 class HtCrawlerPipeline:
     def process_item(self, item, spider):
-        if(item.get('heading')!=None and (not article.objects.filter(heading=item.get('heading')).exists())):
-            # print("saving new article\n\n\n\n.")
+        heading=item.get('heading')
+        if(heading==None):
+            return item;
+        heading=heading.strip()
+        if(heading!='' and not(article.objects.filter(heading=heading).exists() or defenceArticle.objects.filter(heading=heading).exists() or nonDefenceArticle.objects.filter(heading=heading).exists() or mlArticle.objects.filter(heading=heading).exists())):
             newArticle= article(heading=item.get('heading'),description=item.get('description'),url=item.get('url'))
             newArticle.save()
         return item

@@ -25,6 +25,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href='{% static '//fonts.googleapis.com/css?family=Wallpoet' %} rel='stylesheet' type='text/css'>
 	<link href='{% static '//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' %} rel='stylesheet' type='text/css'>
 	<!--//web-fonts-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script>
+		function UC_to_DF(id){
+			$.ajax({
+                url: '/ajax/UC_to_DF',
+                data:{
+                  'id':id
+                },
+                dataType:'json',
+                success: function (data){
+					var cards = document.getElementsByClassName(id);
+					var i;
+					for (i = 0; i < cards.length; i++){
+						cards[i].style.display = "none";
+					}
+                }
+            });
+		}
+	</script>
 </head>
 <style>
 	.hide-scrollbar::-webkit-scrollbar {
@@ -64,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					
 					{% for article in articles %}
-					  <div class="card hide-scrollbar">
+					  <div class="card hide-scrollbar {{article.id}}">
 						<div class="card-text hide-scrollbar">
 							<div class="del">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -79,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="card-stats">
 						  <div class="stat">
-							<div class="value"><button class = "btn1">Defence</button></div>
+							<div class="value"><button id="{{article.id}}" class = "btn1" onclick=UC_to_DF(this.id)>Defence</button></div>
 						  </div>
 						  <div class="stat border">
 							<div class="value"><button class = "btn4">Non Defence</button></div>
@@ -159,14 +178,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <ul>				 
 			 <ul>
 				<li><a href="/">Home</a></li>
-			 <li><a href="defence">Defence News</a></li>
+			 	<li><a href="defence">Defence News</a></li>
 				<li><a href="nondefence">Non-Defence News</a></li>
 				<li><a href="ml"><span> ML</span></a></li>
 			 </ul>
 		  </li>
-		  
-			 
-		
+
 	  <div id="sidebar-btn">
 		  <span></span>
 		  <span></span>

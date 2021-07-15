@@ -60,6 +60,16 @@ def status(request):
     status = scrapyd.job_status('default', task_id)
     return JsonResponse({'status': status})
 
+def uc_to_df(request):
+    idd = request.GET.get('id', None)
+    print("id="+idd);
+    item= article.objects.get(pk=idd);
+    # item= article.objects.get(id=idd);
+    newArticle= defenceArticle(heading=item.heading ,description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result': "success"})
+
 #############################
 #############################
 #############################

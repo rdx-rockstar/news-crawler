@@ -9,6 +9,7 @@ urlpatterns = [
     path('clearML', views.clearML,name='clear'),
     path('ajax/status', views.status,name='crawl'),
     path('ajax/crawl', views.fetchArticles,name='crawl'),
+    path('ajax/UC_to_DF', views.uc_to_df,name='crawl'),
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),
     path('defence', views.defence, name='defence'),
