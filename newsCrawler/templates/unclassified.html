@@ -42,7 +42,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
                 }
             });
+	}
+	function UC_to_NDF(id){
+			$.ajax({
+			url:'/ajax/UC_to_NDF',
+				data:{
+					'id':id
+				},
+				dataType:'json',
+				success:function(data){
+					var cards=document.getElementByClassName(id);
+					var j;
+					for(j=0;j<card.length;j++){
+						cards[j].style.display="none";
+					}
+				}
+			});
 		}
+		function UC_to_ML(id){
+			$.ajax({
+			url:'/ajax/UC_to_ML',
+				data:{
+					'id':id
+				},
+				dataType:'json',
+				success:function(data){
+					var cards=document.getElementByClassName(id);
+					var k;
+					for(k=0;k<card.length;k++){
+						cards[k].style.display="none";
+					}
+				}
+			});
+		}
+
+		function UC_to_DEL(id){
+			$.ajax({
+				url:'/ajax/UC_to_DEL',
+				data:{
+					'id':id
+				},
+				dataType:'json',
+				success:function(data){
+					var cards=document.getElementByClassName(id);
+					var i;
+					for(i=0;i<card.length;i++){
+						cards[i].style.display="none";
+					}
+				}
+			});
+		}
+		       
 	</script>
 </head>
 <style>
@@ -86,10 +136,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <div class="card hide-scrollbar {{article.id}}">
 						<div class="card-text hide-scrollbar">
 							<div class="del">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+							<button id="{{article.id}}" onclick=UC_to_DEL(this.id)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 								<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 							</svg>
+							</button>
 							</div>
 							<h2><a href="{{article.url}}">{{article.heading}}</a></h2><br>
 							<p>
@@ -101,10 +152,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="value"><button id="{{article.id}}" class = "btn1" onclick=UC_to_DF(this.id)>Defence</button></div>
 						  </div>
 						  <div class="stat border">
-							<div class="value"><button class = "btn4">Non Defence</button></div>
+							<div class="value"><button id="{{article.id}}" class = "btn4" onclick=UC_to_NDF(this.id)>Non Defence</button></div>
 						  </div>
 						  <div class="stat">
-							<div class="value"><button class="btn3">ML</button></div>
+							<div class="value"><button id="{{article.id}}" class="btn3" onclick=UC_to_ML(this.id)>ML</button></div>
 						  </div>
 						</div>
 					  </div>
