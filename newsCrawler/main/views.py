@@ -70,6 +70,158 @@ def uc_to_df(request):
     newArticle.save();
     return JsonResponse({'result': "success"})
 
+
+def uc_to_df(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=article.objects.get(pk=idd);
+    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def uc_to_ndf(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=article.objects.get(pk=idd);
+    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def uc_to_ml(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=article.objects.get(pk=idd);
+    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def uc_to_del(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=article.objects.get(pk=idd);
+    item.delete();
+    return JsonResponse({'result':"success"})
+
+
+def df_to_uc(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=defenceArticle.objects.get(pk=idd);
+    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def df_to_ndf(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=defenceArticle.objects.get(pk=idd);
+    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def df_to_ml(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=defenceArticle.objects.get(pk=idd);
+    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def df_to_del(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=defenceArticle.objects.get(pk=idd);
+    item.delete();
+    return JsonResponse({'result':"success"})
+
+
+def ndf_to_uc(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=nonDefenceArticle.objects.get(pk=idd);
+    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ndf_to_df(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=nonDefenceArticle.objects.get(pk=idd);
+    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ndf_to_ml(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=nonDefenceArticle.objects.get(pk=idd);
+    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ndf_to_del(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=nonDefenceArticle.objects.get(pk=idd);
+    item.delete();
+    return JsonResponse({'result':"success"})
+
+
+def ml_to_uc(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=mlArticle.objects.get(pk=idd);
+    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ml_to_df(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=mlArticle.objects.get(pk=idd);
+    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ml_to_ndf(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=mlArticle.objects.get(pk=idd);
+    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item.delete();
+    newArticle.save();
+    return JsonResponse({'result':"success"})
+
+
+def ml_to_del(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=mlArticle.objects.get(pk=idd);
+    item.delete();
+    return JsonResponse({'result':"success"})
+
 #############################
 #############################
 #############################
