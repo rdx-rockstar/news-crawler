@@ -42,8 +42,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
                 }
             });
-	}
-	function UC_to_NDF(id){
+		}
+		function UC_to_NDF(id){
 			$.ajax({
 			url:'/ajax/UC_to_NDF',
 				data:{
@@ -51,9 +51,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var j;
-					for(j=0;j<card.length;j++){
+					for(j=0;j<cards.length;j++){
 						cards[j].style.display="none";
 					}
 				}
@@ -67,9 +67,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var k;
-					for(k=0;k<card.length;k++){
+					for(k=0;k<cards.length;k++){
 						cards[k].style.display="none";
 					}
 				}
@@ -84,9 +84,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var i;
-					for(i=0;i<card.length;i++){
+					for(i=0;i<cards.length;i++){
 						cards[i].style.display="none";
 					}
 				}

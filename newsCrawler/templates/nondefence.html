@@ -35,9 +35,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var i;
-					for(i=0;i<card.length;i++){
+					for(i=0;i<cards.length;i++){
 						cards[i].style.display="none";
 					}
 				}
@@ -52,9 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var i;
-					for(i=0;i<card.length;i++){
+					for(i=0;i<cards.length;i++){
 						cards[i].style.display="none";
 					}
 				}
@@ -69,9 +69,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var i;
-					for(i=0;i<card.length;i++){
+					for(i=0;i<cards.length;i++){
 						cards[i].style.display="none";
 					}
 				}
@@ -86,9 +86,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				},
 				dataType:'json',
 				success:function(data){
-					var cards=document.getElementByClassName(id);
+					var cards=document.getElementsByClassName(id);
 					var i;
-					for(i=0;i<card.length;i++){
+					for(i=0;i<cards.length;i++){
 						cards[i].style.display="none";
 					}
 				}
@@ -134,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					
 					{% for article in articles %}
-					  <div class="card hide-scrollbar">
+					  <div class="card hide-scrollbar {{article.id}}">
 						<div class="card-text hide-scrollbar">
 							<div class="del">
 								<button id="{{article.id}}" onclick=NDF_to_DEL(this.id)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="value"><button id="{{article.id}}" onclick=NDF_to_DF(this.id) class = "btn1">Defence</button></div>
 						  </div>
 						  <div class="stat">
-							<div class="value"><button id="{{article.id}}" onclick=DF_to_ML(this.id) class="btn3">ML</button></div>
+							<div class="value"><button id="{{article.id}}" onclick=NDF_to_ML(this.id) class="btn3">ML</button></div>
 						  </div>
 						</div>
 					  </div>
