@@ -1071,8 +1071,9 @@ button,
 select,
 textarea {
   font-family: inherit;
-  font-size: inherit;
+  font-size: 40px;
   line-height: inherit;
+  border-radius: 8px;
 }
 a {
   color: #337ab7;
@@ -2310,8 +2311,10 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
+  font-size: 30px;
+  color: white;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: lighter;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
