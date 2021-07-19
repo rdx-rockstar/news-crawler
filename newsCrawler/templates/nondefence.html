@@ -147,38 +147,26 @@
 </head>
 <body>
 <div class = "table-container">
-    <div class="heading"><h1>NON DEFENCE</h1></div>
-    <table class = "table">
-        <thead>
-            <tr>
-                <th>ARTICLES</th>
-                <th>CLASSIFYING</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn"id="{{article.id}}" onclick=NDF_to_DF(this.id)>Defence</button><button class = "btn" id="{{article.id}}" onclick=NDF_to_UC(this.id)>Unclassified</button></td>
-
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Defence</button><button class = "btn">Unclassified</button></td>
-
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Defence</button><button class = "btn">Unclassified</button></td>
-
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Defence</button><button class = "btn">Unclassified</button></td>
-
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="heading"><h1>NON DEFENCE</h1></div>
+        <table class = "table">
+    
+            <thead>
+                <tr>
+                    <th>ARTICLES</th>
+                    <th>CLASSIFYING</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <td data-label = "Articles"><a href="{{article.url}}">{{article.heading}}</td>
+                    <td data-label = "Classifying"><button class = "btn" id="{{article.id}}" onclick=NDF_to_DF(this.id)>Defence</button><br><button class = "btn" id="{{article.id}}" onclick=NDF_to_UC(this.id)>Unclassified</button></td>
+    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
