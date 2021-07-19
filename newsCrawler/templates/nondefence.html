@@ -168,5 +168,39 @@
             </tbody>
         </table>
     </div>
+<script type="text/javascript" src="{% static 'js2/jquery.flexisel.js' %}"></script>
+<script src="{% static 'js2/bootstrap.js' %}"></script>
+
+	<div id="sidebar"> 
+		<h4 class="menu">Menu</h4>
+			 <ul>				 
+			 <ul>
+				<li><a href="/">Home</a></li>
+			 <li><a href="defence">Defence News</a></li>
+				<li><a href="nondefence">Non-Defence News</a></li>
+				<li><a href="ml"><span> ML</span></a></li>
+			 </ul>
+		  </li>
+		  
+			 
+		
+	  <div id="sidebar-btn">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+	  </div>
+  </div>
+  <!-- <h4 class="menu">Menu</h4> -->
+<script>
+	var sidebarbtn = document.getElementById('sidebar-btn');
+	  var sidebar = document.getElementById('sidebar');
+	 sidebarbtn.addEventListener('click', function () {
+	if(sidebar.classList.contains('visible')){
+		  sidebar.classList.remove('visible'); 
+	 }else {
+		  sidebar.className = 'visible';
+	  }
+	});
+  </script>
 </body>
 </html>
