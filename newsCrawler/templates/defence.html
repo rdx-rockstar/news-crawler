@@ -3,6 +3,43 @@
 <html>
 <head>
     <title>Defence</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script>
+		function DF_to_UC(id){
+			$.ajax({
+				url:'/ajax/DF_to_UC',
+				data:{
+					'id':id
+				},
+				dataType:'json',
+				success:function(data){
+					var cards=document.getElementsByClassName(id);
+					var i;
+					for(i=0;i<cards.length;i++){
+						cards[i].style.display="none";
+					}
+				}
+			});
+		}
+
+		function DF_to_NDF(id){
+			$.ajax({
+				url:'/ajax/DF_to_NDF',
+				data:{
+					'id':id
+				},
+				dataType:'json',
+				success:function(data){
+					var cards=document.getElementsByClassName(id);
+					var i;
+					for(i=0;i<cards.length;i++){
+						cards[i].style.display="none";
+					}
+				}
+			});
+		}
+
+	</script>
     <style type= "text/css">
     *{
         margin: 0;
@@ -110,39 +147,63 @@
     </style>
 </head>
 <body>
-<div class = "table-container">
-    <div class="heading"><h1>DEFENCE</h1></div>
-    <table class = "table">
-        <thead>
-            <tr>
-                <th>ARTICLES</th>
-                <th>CLASSIFYING</th>
+ <div class = "table-container">
+        <div class="heading"><h1>DEFENCE</h1></div>
+        <table class = "table">
+    
+            <thead>
+                <tr>
+                    <th>ARTICLES</th>
+                    <th>CLASSIFYING</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <td data-label = "Articles"><a href="{{article.url}}">{{article.heading}}</td>
+                    <td data-label = "Classifying"><button class = "btn" id="{{article.id}}" onclick=DF_to_NDF(this.id)>Non Defence</button><br><button class = "btn" id="{{article.id}}" onclick=DF_to_UC(this.id)>Unclassified</button></td>
+    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Unclassified</button><button class = "btn">Non-Defence</button></td>
+	<script type="text/javascript" src="{% static 'js2/jquery.flexisel.js' %}"></script>
+	<script src="{% static 'js2/bootstrap.js' %}"></script>
 
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Unclassified</button><button class = "btn">Non-Defence</button></td>
+	<div id="sidebar"> 
+		<h4 class="menu">Menu</h4>
+			 <ul>				 
+			 <ul>
+				<li><a href="/">Home</a></li>
+			 <li><a href="defence">Defence News</a></li>
+				<li><a href="nondefence">Non-Defence News</a></li>
+				<li><a href="ml"><span> ML</span></a></li>
+			 </ul>
+		  </li>
+		  
+			 
+		
+	  <div id="sidebar-btn">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+	  </div>
+  </div>
+  <!-- <h4 class="menu">Menu</h4> -->
+<script>
+	var sidebarbtn = document.getElementById('sidebar-btn');
+	  var sidebar = document.getElementById('sidebar');
+	 sidebarbtn.addEventListener('click', function () {
+	if(sidebar.classList.contains('visible')){
+		  sidebar.classList.remove('visible'); 
+	 }else {
+		  sidebar.className = 'visible';
+	  }
+	});
+  </script>
 
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Unclassified</button><button class = "btn">Non-Defence</button></td>
-
-            </tr>
-            <tr>
-                <td data-label = "Articles">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</td>
-                <td data-label = "Classifying"><button class = "btn">Unclassified</button><button class = "btn">Non-Defence</button></td>
-
-            </tr>
-        </tbody>
-    </table>
-</div>
 </body>
 </html>
