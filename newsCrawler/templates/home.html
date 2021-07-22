@@ -23,6 +23,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href='{% static '//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' %} rel='stylesheet' type='text/css'>
 	<!--//web-fonts-->
 	<style>
+		body{
+			font-family: sans-serif;
+			background-color: #32312f;  /*If image not available*/
+			background: "{% static 'images2/home.jpeg' %}";
+			background-size: cover;
+			overflow: hidden;
+		}
 		.loader {
 			border: 4px solid #f3f3f3; /* Light grey */
 			border-top: 4px solid #3498db; /* Blue */
@@ -110,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header-top">
 				<div class="search-box">
 					<div id="sb-search" class="sb-search"></div>
-					<ul>
+					<ul >
 					{% if user.is_authenticated %} 
 						<li><button id="showRight" class="navig" style="color:white"><a href="logout">Logout </a></button>	
 					{%else%} 
@@ -132,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="search-two">
 						<br><br><br><br>
 						<label> Select Newspaper                          :                          </label>
-						<select id="url" class="frm-field required">
+						<select id="url" class="frm-field required" style="font-size: 25px;">
 						<option value="https://www.hindustantimes.com/" selected="selected">Hindustan Times</option>
 						<option value="https://www.thehindu.com/">Times of India</option>
 						</select>

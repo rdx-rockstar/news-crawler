@@ -327,11 +327,34 @@ h4.menu {
     color: #fff;
     text-transform:uppercase;
     font-weight:bold;
-    background:#EFC509;
+    background:red;
 }
 #sidebar.visible {
   left: 0;
   transition: left 0.3s linear;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: white;
+    text-decoration: none;
 }
 
 #sidebar-btn {
@@ -348,7 +371,7 @@ h4.menu {
 
 #sidebar-btn span {
   height:3px;
-  background:#EFC509;
+  background: red !important;
   margin-bottom: 5px;
   display: block;
 }
