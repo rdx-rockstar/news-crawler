@@ -4,10 +4,7 @@
 <head>
     <title>Non-Defence</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <link href="{% static 'css3/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" type="text/css" href="{% static 'css3/zoomslider.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css3/style.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'css3/component.css' %}" />
 	<script>
 		function NDF_to_UC(id){
 			$.ajax({
@@ -60,11 +57,7 @@
 		}
 	</script>
     <style type= "text/css">
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    
     body{
         font-family: sans-serif;
         background-color: #32312f;  /*If image not available*/
@@ -72,98 +65,7 @@
         background-attachment: fixed;
         background-size: cover;
     }
-    .table-container{
-        padding: 0 10%;
-        margin: 40px auto 0;
-        }
-
-    .heading h1{
-        font-size: 50px;
-        text-align: center;
-        margin-bottom: 100px;
-        color: black;
-        text-shadow: 3px 3px 5px #ee2828;
-    }
-    .table{
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .table thead{
-        background-color: #ee2828;
-    }
-    .table thead tr th{
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.35px;
-        color: #ffffff;
-        opacity: 1;
-        padding: 12px;
-        vertical-align: top;
-        border: 1px solid #dee2e685;
-    }
-    .table tbody tr td{
-        font-size: 16px;
-        letter-spacing: 0.35px;
-        font-weight: normal;
-        color: #f1f1f1;
-        background-color: #3c3f44;
-        padding: 8px;
-        text-align: center;
-        border: 1px solid #dee2e685;
-    }
-    .table tbody tr td .btn{
-        width: 130px;
-        text-decoration: none;
-        line-height: 35px;
-        display: inline-block;
-        background-color: white;
-        font-weight: medium;
-        color: black;
-        text-align: center;
-        vertical-align: middle;
-        border: 1px solid transparent;
-        font-size: 14px;
-        opacity: 1;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: inset 0 0 0 0 white;
-        transition: ease-out 0.3s;
-        outline: none;
-        margin-top: 5px;
-    }
-    .table tbody tr td .btn:hover{
-        box-shadow: inset 130px 0 0 0 #ff1046;
-        cursor: pointer;
-        color: #ffffff;
-    }
-    @media (max-width: 768px){
-        .table thead{
-            display: none;
-        }
-        .table, .table tbody, .table tr, .table td{
-            display: block;
-            width: 100%;
-        }
-        .table tr{
-            margin-bottom: 15px;
-        }
-        .table tbody tr td{
-            text-align: right;
-            padding-left: 50%;
-            position: relative;
-        }
-        .table td:before{
-            content: attr(data-label);
-            position: absolute;
-            left:0;
-            width: 50%;
-            padding-left: 15px;
-            font-weight: 600;
-            font-size: 14px;
-            text-align: left;
-
-        }
-    }
+    
     </style>
 </head>
 <body>
