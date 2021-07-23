@@ -330,7 +330,7 @@ h4.menu {
 
 #sidebar-btn span {
   height:3px;
-  background:#E60D41;
+  background:#ff0000;
   margin-bottom: 5px;
   display: block;
 }
@@ -1267,7 +1267,7 @@ border:none!important;
 .inner-text input.email {
     background: url(../images/l2.png) no-repeat 3% 51%;
 }
-#crawl{
+.crawl{
     outline: none;
     border: none;
     width: 12%;
@@ -1282,9 +1282,10 @@ border:none!important;
     -o-transition: .5s all;
     -ms-transition: .5s all;
 }
-#crawl:hover {
+.crawl:hover {
 	background:red;
 }
+
 .section_drop2 select#country6 {
     padding: 10px 35px;
     width: 100%;

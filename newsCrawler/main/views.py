@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User,auth 
-from .models import article,defenceArticle,nonDefenceArticle,mlArticle
+from .models import defenceArticle,nonDefenceArticle,AIdefenceArticle,AInonDefenceArticle,unclassiedArticle,article
 from uuid import uuid4
 from urllib.parse import urlparse
 from django.core.validators import URLValidator
@@ -13,11 +13,19 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from scrapyd_api import ScrapydAPI
 
+def AI(request):
+    for item in article.objects.all():
+        if(not unclassiedArticle.objects.filter(heading=item.heading).exists()):
+            newArticle=AIdefenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
+            newArticle.save()
+        item.delete();
+    return JsonResponse({'result':"success"})
+
 def home(request):
     return render(request,'home.html',{'user':request.user})
 
-def clear(request):
-    article.objects.all().delete()
+def clearUnclassified(request):
+    unclassiedArticle.objects.all().delete()
     return redirect("/unclassified")
 
 def clearDefence(request):
@@ -28,9 +36,22 @@ def clearNonDefence(request):
     nonDefenceArticle.objects.all().delete()
     return redirect("/nondefence")
 
-def clearML(request):
-    mlArticle.objects.all().delete()
-    return redirect("/ml")
+def clearAIDefence(request):
+    AIdefenceArticle.objects.all().delete()
+    return redirect("/AIdefence")
+
+def clearAINonDefence(request):
+    AInonDefenceArticle.objects.all().delete()
+    return redirect("/AInondefence")
+
+def manual(request):
+    for item in article.objects.all():
+        if(not unclassiedArticle.objects.filter(heading=item.heading).exists()):
+            newArticle=unclassiedArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
+            newArticle.save()
+        item.delete();
+    return JsonResponse({'result':"success"})
+
 
 
 scrapyd = ScrapydAPI('http://localhost:6800')
@@ -61,21 +82,10 @@ def status(request):
     return JsonResponse({'status': status})
 
 def uc_to_df(request):
-    idd = request.GET.get('id', None)
-    print("id="+idd);
-    item= article.objects.get(pk=idd);
-    # item= article.objects.get(id=idd);
-    newArticle= defenceArticle(heading=item.heading ,description=item.description, url=item.url)
-    item.delete();
-    newArticle.save();
-    return JsonResponse({'result': "success"})
-
-
-def uc_to_df(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=article.objects.get(pk=idd);
-    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item=unclassiedArticle.objects.get(pk=idd);
+    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
@@ -84,27 +94,16 @@ def uc_to_df(request):
 def uc_to_ndf(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=article.objects.get(pk=idd);
-    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item=unclassiedArticle.objects.get(pk=idd);
+    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
-
-
-def uc_to_ml(request):
-    idd=request.GET.get('id',None)
-    print("id="+idd);
-    item=article.objects.get(pk=idd);
-    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
-    item.delete();
-    newArticle.save();
-    return JsonResponse({'result':"success"})
-
 
 def uc_to_del(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=article.objects.get(pk=idd);
+    item=unclassiedArticle.objects.get(pk=idd);
     item.delete();
     return JsonResponse({'result':"success"})
 
@@ -113,7 +112,7 @@ def df_to_uc(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
     item=defenceArticle.objects.get(pk=idd);
-    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    newArticle=unclassiedArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
@@ -123,17 +122,7 @@ def df_to_ndf(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
     item=defenceArticle.objects.get(pk=idd);
-    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
-    item.delete();
-    newArticle.save();
-    return JsonResponse({'result':"success"})
-
-
-def df_to_ml(request):
-    idd=request.GET.get('id',None)
-    print("id="+idd);
-    item=defenceArticle.objects.get(pk=idd);
-    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
+    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
@@ -146,12 +135,11 @@ def df_to_del(request):
     item.delete();
     return JsonResponse({'result':"success"})
 
-
 def ndf_to_uc(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
     item=nonDefenceArticle.objects.get(pk=idd);
-    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    newArticle=unclassiedArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
@@ -161,21 +149,10 @@ def ndf_to_df(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
     item=nonDefenceArticle.objects.get(pk=idd);
-    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
-
-
-def ndf_to_ml(request):
-    idd=request.GET.get('id',None)
-    print("id="+idd);
-    item=nonDefenceArticle.objects.get(pk=idd);
-    newArticle=mlArticle(heading=item.heading, description=item.description, url=item.url)
-    item.delete();
-    newArticle.save();
-    return JsonResponse({'result':"success"})
-
 
 def ndf_to_del(request):
     idd=request.GET.get('id',None)
@@ -184,43 +161,40 @@ def ndf_to_del(request):
     item.delete();
     return JsonResponse({'result':"success"})
 
-
-def ml_to_uc(request):
+def ai_df_to_ndf(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=mlArticle.objects.get(pk=idd);
-    newArticle=article(heading=item.heading, description=item.description, url=item.url)
+    item=AIdefenceArticle.objects.get(pk=idd);
+    newArticle=AInonDefenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
 
 
-def ml_to_df(request):
+def ai_df_to_del(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=mlArticle.objects.get(pk=idd);
-    newArticle=defenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item=AIdefenceArticle.objects.get(pk=idd);
+    item.delete();
+    return JsonResponse({'result':"success"})
+
+def ai_ndf_to_df(request):
+    idd=request.GET.get('id',None)
+    print("id="+idd);
+    item=AInonDefenceArticle.objects.get(pk=idd);
+    newArticle=AIdefenceArticle(heading=item.heading, description=item.description, url=item.url,date=item.date)
     item.delete();
     newArticle.save();
     return JsonResponse({'result':"success"})
 
-
-def ml_to_ndf(request):
+def ai_ndf_to_del(request):
     idd=request.GET.get('id',None)
     print("id="+idd);
-    item=mlArticle.objects.get(pk=idd);
-    newArticle=nonDefenceArticle(heading=item.heading, description=item.description, url=item.url)
+    item=AInonDefenceArticle.objects.get(pk=idd);
     item.delete();
-    newArticle.save();
     return JsonResponse({'result':"success"})
 
 
-def ml_to_del(request):
-    idd=request.GET.get('id',None)
-    print("id="+idd);
-    item=mlArticle.objects.get(pk=idd);
-    item.delete();
-    return JsonResponse({'result':"success"})
 
 #############################
 #############################
@@ -281,11 +255,14 @@ def nondefence(request):
     articles=nonDefenceArticle.objects.all()
     return render(request, 'nondefence.html',{'articles':articles})
 
-def ml(request):
-    articles=mlArticle.objects.all()
-    return render(request, 'ml.html',{'articles':articles})
+def AIdefence(request):
+    articles=AIdefenceArticle.objects.all()
+    return render(request, 'AIdefence.html',{'articles':articles})
 
+def AInondefence(request):
+    articles=AInonDefenceArticle.objects.all()
+    return render(request, 'AInondefence.html',{'articles':articles})
 
 def unclassified(request):
-    articles=article.objects.all()
+    articles=unclassiedArticle.objects.all()
     return render(request, 'unclassified.html',{'articles':articles})

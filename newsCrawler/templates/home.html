@@ -39,6 +39,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			animation: spin 2s linear infinite;
 			margin-top: 320px;
 		  }
+		.fl {
+			float: left;
+		}
 		  @keyframes spin {
 			0% { transform: rotate(0deg); }
 			100% { transform: rotate(360deg); }
@@ -51,14 +54,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
-    var loader,articles
+    var loader,articles,status
     window.onload = function(){
         loader=document.getElementById('loader')
         articles=document.getElementById('demo-1')
         ajax=document.getElementById('crawl')
+		state=document.getElementById('status')
+		AIajax=document.getElementById('AIcrawl')
         loader.style.display='none'
-        var loaded=0,myTimer,task_id,unique_id
+        var loaded=0,myTimer,task_id,unique_id,isAI
         ajax.onclick=function(){
+			isAI=0;
+            fetch();
+        }
+		AIajax.onclick=function(){
+			isAI=1;
+            fetch();
+        }
+		function fetch(){
             console.log("fetching")
 			articles.style.display='none'
             loader.style.display='block'
@@ -67,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $.ajax({
                 url: '/ajax/crawl',
                 data: {
-                  'url':url
+                  'url':url,
                 },
                 dataType:'json',
                 success: function (data) {
@@ -80,7 +93,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         }
         function loadArticles(){
-            window.location.href = "http://localhost:8000/unclassified";
+			if(isAI==0){
+				state.innerHTML="Loading News . . ."
+				$.ajax({
+					url: '/ajax/manual',
+					data: {
+					  'lorem':'ipsum',
+					},
+					dataType:'json',
+					success: function (data) {
+						window.location.href = "http://localhost:8000/unclassified";
+					}
+				});
+			}
+			else{
+				state.innerHTML="Classifying News . . ."
+				$.ajax({
+					url: '/ajax/AI',
+					data: {
+					  'lorem':'ipsum',
+					},
+					dataType:'json',
+					success: function (data) {
+						window.location.href = "http://localhost:8000/AIdefence";
+					}
+				});
+			}
         }
         function status(){
             if(loaded==1){
@@ -111,35 +149,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--/banner-section-->
-	<div id="demo-1" data-zs-src='["{% static 'images2/home.jpeg' %}"]'
-		data-zs-overlay="dots" >
+	<div id="demo-1" data-zs-src='["{% static 'images2/home.jpeg' %}"]'>
 		<div class="demo-inner-content">
 			<div class="header-top">
 				<div class="search-box">
 					<div id="sb-search" class="sb-search"></div>
 					<ul >
 					{% if user.is_authenticated %} 
-						<li><button id="showRight" class="navig" style="color:white"><a href="logout">Logout </a></button>	
+						<li><button id="showRight" class="navig" style="color:white">
+							<a href="logout" style="color: white; font-weight:bold; font-size:large; text-decoration:underline">Logout </a></button>	
 					{%else%} 
-						<li><button id="showRight" class="navig" style="color:white"><a href="login">Login </a></button>
-						<li><button id="showRight" class="navig" style="color:white"><a href="register">Register </a></button>
+						<li><button id="showRight" class="navig" style="color:red">
+							<a href="login" style="color: white; font-weight:bold; font-size:large; text-decoration:underline">
+								Login
+							 </a>
+							</button>
+						<li><button id="showRight" class="navig" style="color:white">
+							<a href="register" style="color: white; font-weight:bold; font-size:large;text-decoration:underline">
+								Register 
+							</a>
+						</button>
 					{%endif%}
 <!--Navigation from Right To Left-->
 						</li>
 					</ul>
-
 				</div>
-
-				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 			<div class="banner-info">
 				<h1><a href="">News <span class="logo-sub">Crawler</span> </a></h1>
 				<form action="">
 					<div class="search-two">
 						<br><br><br><br>
 						<label> Select Newspaper                          :                          </label>
-						<select id="url" class="frm-field required" style="font-size: 25px;">
+						<select id="url" class="form-select" style="font-size: 25px;">
 						<option value="https://www.hindustantimes.com/" selected="selected">Hindustan Times</option>
 						<option value="https://www.thehindu.com/">Times of India</option>
 						</select>
@@ -149,11 +191,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br><br>
 					<div class="clearfix"></div>
 				</form>
-				<button id="crawl">CRAWL</button>
+				<div style="margin-left: 40%;">
+				<button id="crawl" class="crawl fl">CRAWL</button>
+				<button id="AIcrawl" style="margin-left: 50px;" class="crawl fl">AI CRAWL</button>
+			</div>
 			</div>
 		</div>
 	</div>
-	<div class="loader center" id="loader"></div>
+	<div id="loader">
+	<div class="loader center">
+	</div>
+	<br>
+	<div id="status" style="margin-left:46%;color:white">Fetching News . . .</div>
+	</div>
 	<!--//featured_section-->
 								<!-- <div class="card ">
 									<div class="card__front">
@@ -247,19 +297,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="{% static 'js2/bootstrap.js' %}"></script>
 
 	<!--sidebar-->
-	<div id="sidebar"> 
-		<h4 class="menu">Menu</h4>
+	<div id="sidebar">
+		<h4 class="menu">Manual</h4>
 			 <ul>				 
-			 <ul>
 				<li><a href="unclassified"><span> Unclassified News</span></a></li>
-			 <li><a href="defence">Defence News</a></li>
+				 <li><a href="defence">Defence News</a></li>
 				<li><a href="nondefence">Non-Defence News</a></li>
-				
 			 </ul>
-		  </li>
-		  
-			 
-		
+		<h4 class="menu">AI</h4>
+		<ul>				 
+			 <li><a href="AIdefence">Defence News</a></li>
+			<li><a href="AInondefence">Non-Defence News</a></li>
+		 </ul>
 	  <div id="sidebar-btn">
 		  <span></span>
 		  <span></span>

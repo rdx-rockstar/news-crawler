@@ -368,6 +368,32 @@ a:active {
     top: 0;
     right: -73px;
 }
+.home {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 15px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    top: 40px;
+    right: -85px;
+    transform: scale(1.8);
+}
+
+.bin {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 15px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    top: 87px;
+    right: -85px;
+    transform: scale(1.8);
+    transition: .5s
+}
 
 #sidebar-btn span {
   height:3px;

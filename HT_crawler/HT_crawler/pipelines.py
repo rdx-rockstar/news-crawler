@@ -4,7 +4,8 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from main.models import article,defenceArticle,nonDefenceArticle,mlArticle
+from datetime import date
+from main.models import article,unclassiedArticle,defenceArticle,nonDefenceArticle,AIdefenceArticle,AInonDefenceArticle
 
 class HtCrawlerPipeline:
     def process_item(self, item, spider):
@@ -12,8 +13,8 @@ class HtCrawlerPipeline:
         if(heading==None):
             return item;
         heading=heading.strip()
-        if(heading!='' and not(article.objects.filter(heading=heading).exists() or defenceArticle.objects.filter(heading=heading).exists() or nonDefenceArticle.objects.filter(heading=heading).exists() or mlArticle.objects.filter(heading=heading).exists())):
-            newArticle= article(heading=item.get('heading'),description=item.get('description'),url=item.get('url'))
+        if(heading!='' and not(article.objects.filter(heading=heading).exists() or defenceArticle.objects.filter(heading=heading).exists() or nonDefenceArticle.objects.filter(heading=heading).exists()  or unclassiedArticle.objects.filter(heading=heading).exists() or AIdefenceArticle.objects.filter(heading=heading).exists() or AInonDefenceArticle.objects.filter(heading=heading).exists())):
+            newArticle= article(heading=item.get('heading'),description=item.get('description'),url=item.get('url'),date=date.today().strftime("%d/%m/%Y"))
             newArticle.save()
         return item
         
