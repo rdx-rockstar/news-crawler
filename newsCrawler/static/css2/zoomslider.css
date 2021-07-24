@@ -237,18 +237,6 @@
     padding:10px 20px 10px 30px;
 	background: url(../images/rupee.png) no-repeat 2% center #ffffff;
 }
-.search-two seclect,select#country{
-    padding:10px 46px;
-    width: 100%;
-    font-weight: normal;
-    background: none;
-    border: none;
-    color: #848484;
-    outline: none;
-    font-size:14px;
-    margin-bottom:0;
-	background: url(../images/car.png) no-repeat 5% center #ffffff;
-}
 .section_room select{
 	border-left:1px solid #999!important;
 	background: url(../images/rupee.png) no-repeat 7% center #ffffff!important;
@@ -315,18 +303,6 @@
 	.banner-info form {
 		width:81%;
 		margin: 2% auto 0;
-	}
-	.search-two seclect, select#country {
-		padding: 10px 34px;
-		width: 100%;
-		font-weight: normal;
-		background: none;
-		border: none;
-		color: #848484;
-		outline: none;
-		font-size: 12px;
-		margin-bottom: 0;
-		background: url(../images/car.png) no-repeat 6% center #ffffff;
 	}
 	.section_room select {
 		border-left: 1px solid #999!important;

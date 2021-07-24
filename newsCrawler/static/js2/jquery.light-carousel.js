@@ -1,4 +1,4 @@
-/* Light Carousel v1.0.0 | (c) 2015 Taisuke J | This project is released under the MIT license. */
+
 
 (function($){
 

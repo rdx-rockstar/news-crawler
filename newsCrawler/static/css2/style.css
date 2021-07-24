@@ -19,6 +19,35 @@ body a:hover{
     -o-transition: 0.5s all ease;
     -ms-transition: 0.5s all ease;
 }
+a{
+  text-decoration: none;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 5px;
+    font-weight: lighter;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+  line-height: inherit;
+  border-radius: 8px;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font: inherit;
+  color: black;
+}
+
 
 /*-- sidebar --*/
 #sidebar {

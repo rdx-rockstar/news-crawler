@@ -1,7 +1,4 @@
-/**
- * Do the clicking stuff
- *
- */
+
 
 (function() {
   var cards = document.querySelectorAll(".card.effect__click");
@@ -17,11 +14,6 @@
     });
   }
 })();
-
-/**
- * Do the random stuff
- *
- */
 
 (function() {
 

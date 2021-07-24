@@ -1,16 +1,11 @@
-/**
-  Initializing the Jq function for `jqSlide`
-  So that we can access as $('element').jqSlide();
-**/
+
 (function($) {
   $.fn.jqSlide = function(options) {
     jqSlide.init(this, options);
   };
 }(jQuery));
 
-/**
-  Master jqSlide object
-**/
+
 
 var jqSlide = {
 

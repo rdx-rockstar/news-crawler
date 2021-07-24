@@ -1,12 +1,4 @@
-/*
- *	jQuery OwlCarousel v1.31
- *
- *	Copyright (c) 2013 Bartosz Wojciechowski
- *	http://www.owlgraphic.com/owlcarousel/
- *
- *	Licensed under MIT
- *
- */
+
 
 if ( typeof Object.create !== "function" ) {
 	Object.create = function( obj ) {
@@ -23,7 +15,6 @@ if ( typeof Object.create !== "function" ) {
 
 			base.$elem = $(el);
 
-			// options passed via js override options passed via data attributes
 			base.options = $.extend({}, $.fn.owlCarousel.options, base.$elem.data(), options);
 
 			base.userOptions = options;
